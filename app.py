@@ -4,7 +4,7 @@
 #-----------------------------------------------------------------------------------------
 
 #generate dictionary for players score
-score = {"Player 1": 0, "Player 2": 0}
+score = {"Player 1": 0, "Player 2": 0, "Tie": 0, "rounds": 1}
 #generate function game
 def game(score):
     #generate array for options
@@ -13,6 +13,7 @@ def game(score):
     while True:
         #generate input user variable
         print("Welcome to Rock, Paper, Scissors! Please enter your choice from the following options: rock, paper, scissors")
+        print(f"Round {score['rounds']}")
         user1 = input("Player 1, please enter your choice: ").lower()
         if user1 not in options:
             print("Invalid choice. Please try again.")
@@ -27,6 +28,7 @@ def game(score):
         print(f"Player 1 chose: {user1} and Player 2 chose: {user2}")
         if user1 == user2:
             print("It's a tie!")
+            score["Tie"] += 1
         elif user1 == "rock" and user2 == "scissors":
             print("The rock beats the scissors (breaks them), Player 1 wins!")
             score["Player 1"] += 1
@@ -62,6 +64,7 @@ def game(score):
         #the user select play again or not if not the game is over and terminate the while bucle
         play_again = input("Would you like to play again? (y/n): ").lower()
         if play_again == "y":
+            score["rounds"] += 1
             return game(score)
         elif play_again == "n":
             print("Thanks for playing!")
@@ -77,5 +80,5 @@ def game(score):
         print("Player 2 wins!")
     else:
         print("It's a tie!")
-    print(f"Final score: Player 1 score: {score['Player 1']} vs Player 2 score: {score['Player 2']}")
+    print(f"Final score: Player 1 score: {score['Player 1']} vs Player 2 score: {score['Player 2']}, rounds played: {score['rounds']}, ties: {score['Tie']}")
 game(score)
